@@ -1,7 +1,8 @@
 class ToDo {
-  
   String _title;
   bool _done;
+
+  ToDo(this._title, this._done);
 
   get title => this._title;
 
