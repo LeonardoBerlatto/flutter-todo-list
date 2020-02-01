@@ -43,6 +43,12 @@ class _HomeState extends State<AppHome> {
       body: SafeArea(
         child: Container(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // TODO: show dialog
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
