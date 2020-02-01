@@ -45,7 +45,7 @@ class _HomeState extends State<AppHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // TODO: show dialog
+          // TODO: display dialog
         },
         child: Icon(Icons.add),
       ),
