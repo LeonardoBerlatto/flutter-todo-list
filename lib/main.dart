@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:todo_list/theme/style.dart';
 
+import 'components/dialog/add-todo-dialog.dart';
 import 'models/todo.dart';
 
 void main() => runApp(ToDoApp());
@@ -39,6 +40,23 @@ class _HomeState extends State<AppHome> {
     return file.writeAsString(encodedJsonList);
   }
 
+  Future<void> _displayDialog() async {
+    return showGeneralDialog<void>(
+        context: context,
+        transitionBuilder: (context, firstAnimation, secondAnimation, widget) {
+          return Transform.scale(
+            scale: firstAnimation.value,
+            child: AddToDoDialog(),
+          );
+        },
+        transitionDuration: Duration(milliseconds: 250),
+        barrierDismissible: false,
+        barrierLabel: '',
+        pageBuilder: (context, animation1, animation2) {
+          return null;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +64,7 @@ class _HomeState extends State<AppHome> {
         child: Container(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: display dialog
-        },
+        onPressed: () async => await _displayDialog(),
         child: Icon(Icons.add),
       ),
     );
