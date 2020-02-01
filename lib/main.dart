@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:todo_list/theme/style.dart';
 
 import 'models/todo.dart';
 
@@ -14,6 +15,7 @@ class ToDoApp extends StatelessWidget {
     return MaterialApp(
       home: AppHome(),
       title: 'My ToDo List',
+      theme: appTheme()
     );
   }
 }
