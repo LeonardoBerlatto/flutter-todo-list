@@ -19,15 +19,12 @@ class AddToDoDialog extends StatelessWidget {
         ],
       ),
       content: Form(
-        child: SingleChildScrollView(
-          child: Container(
-            constraints: BoxConstraints.expand(height: 200),
+        child: Container(
+          constraints: BoxConstraints.expand(height: 200),
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                TextInput('Title'),
-                TextArea('Description')
-              ],
+              children: <Widget>[TextInput('Title'), TextArea('Description')],
             ),
           ),
         ),
