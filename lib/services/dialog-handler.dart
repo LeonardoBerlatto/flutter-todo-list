@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/components/dialog/add-todo-dialog.dart';
 import 'package:todo_list/components/dialog/error-dialog.dart';
+import 'package:todo_list/models/todo.dart';
 
 class DialogHandler {
   Future<void> _displayDialog(BuildContext context, Widget dialog) {
@@ -20,8 +21,8 @@ class DialogHandler {
         });
   }
 
-  void displayAddTodoDialog(BuildContext context) async {
-    await _displayDialog(context, AddToDoDialog());
+  void displayAddTodoDialog(BuildContext context, Function(ToDo) function) async {
+    await _displayDialog(context, AddToDoDialog(callback: function));
   }
 
   void displayErrrorDialog(BuildContext context, String text) async {
