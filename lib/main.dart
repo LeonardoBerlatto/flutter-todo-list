@@ -1,12 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:todo_list/services/dialog-handler.dart';
-import 'package:todo_list/theme/style.dart';
+import 'services/dialog-handler.dart';
+import 'theme/style.dart';
 
-import 'components/dialog/add-todo-dialog.dart';
 import 'models/todo.dart';
 
 void main() => runApp(ToDoApp());
@@ -15,7 +10,10 @@ class ToDoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: AppHome(), title: 'My ToDo List', theme: appTheme());
+      home: AppHome(),
+      title: 'My ToDo List',
+      theme: appTheme(),
+    );
   }
 }
 
@@ -35,6 +33,10 @@ class _HomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('ToDo List'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Container(),
       ),
