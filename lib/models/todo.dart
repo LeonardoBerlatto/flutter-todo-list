@@ -1,14 +1,19 @@
 class ToDo {
   String _title;
-  bool _done;
+  String _description;
+  bool _isDone;
 
-  ToDo(this._title, this._done);
+  ToDo(this._title, this._description, this._isDone);
 
   get title => this._title;
 
   set title(String title) => this._title = title;
 
-  get done => this._done;
+  get description => this._description;
 
-  set done(bool done) => this._done = done;
+  set description(String description) => this._description = description;
+
+  get isDone => this._isDone;
+
+  set isDone(bool isDone) => this._isDone = isDone;
 }
