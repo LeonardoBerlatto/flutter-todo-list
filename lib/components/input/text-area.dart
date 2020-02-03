@@ -13,7 +13,8 @@ class TextArea extends StatelessWidget {
         style: TextStyle(fontSize: 18),
         keyboardType: TextInputType.multiline,
         decoration: InputDecoration(
-          labelText: 'Description',
-        ));
+          labelText: labelText,
+        ),
+        controller: controller);
   }
 }
