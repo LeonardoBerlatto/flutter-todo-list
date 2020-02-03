@@ -7,11 +7,10 @@ import 'package:todo_list/models/todo.dart';
 import 'package:todo_list/services/dialog-handler.dart';
 
 class JsonFileHandler {
-
   DialogHandler _dialogHandler;
 
   JsonFileHandler() {
-   this._dialogHandler = DialogHandler();
+    this._dialogHandler = DialogHandler();
   }
 
   Future<File> _getFile() async {
@@ -25,7 +24,12 @@ class JsonFileHandler {
     return file.writeAsString(encodedJsonList);
   }
 
-  Future<String> readEncodedToDoList(BuildContext context) async {
+  Future<List> getDecodedToDoList(BuildContext context) {
+    return _readEncodedToDoList(context)
+        .then((encodedList) => jsonDecode(encodedList));
+  }
+
+  Future<String> _readEncodedToDoList(BuildContext context) async {
     try {
       final file = await _getFile();
 
@@ -35,5 +39,4 @@ class JsonFileHandler {
     }
     return null;
   }
-
 }
