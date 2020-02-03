@@ -1,19 +1,20 @@
-class ToDo {
-  String _title;
-  String _description;
-  bool _isDone;
+import 'dart:convert';
 
-  ToDo(this._title, this._description, this._isDone);
+import 'package:json_annotation/json_annotation.dart';
 
-  get title => this._title;
+part 'todo.g.dart';
 
-  set title(String title) => this._title = title;
+@JsonSerializable()
+class ToDo extends JsonEncoder {
+  String title;
+  String description;
 
-  get description => this._description;
+  @JsonKey(name: 'is_done')
+  bool isDone;
 
-  set description(String description) => this._description = description;
+  ToDo(this.title, this.description, this.isDone);
 
-  get isDone => this._isDone;
-
-  set isDone(bool isDone) => this._isDone = isDone;
+  factory ToDo.fromJson(Map<String, dynamic> json) => _$ToDoFromJson(json);
+  
+  Map<String, dynamic> toJson() => _$ToDoToJson(this);
 }
