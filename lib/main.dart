@@ -117,7 +117,30 @@ class _HomeState extends State<AppHome> {
           }),
     );
 
+    _scaffoldKey.currentState.removeCurrentSnackBar();
     _scaffoldKey.currentState.showSnackBar(snackBar);
+  }
+
+  Future<void> _refreseToDoList() async {
+    await Future.delayed(Duration(seconds: 1));
+    this.setState(() {
+      _sortToDoList();
+      _jsonFileHandler.saveFile(_todoList);
+    });
+  }
+
+  void _sortToDoList() {
+    this._todoList.sort((a, b) {
+      if (a.isDone && !b.isDone) {
+        return 1;
+      }
+
+      if (!a.isDone && b.isDone) {
+        return -1;
+      }
+
+      return 0;
+    });
   }
 
   @override
@@ -128,16 +151,19 @@ class _HomeState extends State<AppHome> {
         title: Text('ToDo List'),
         centerTitle: true,
       ),
-      body: Flex(
-        direction: Axis.vertical,
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: _todoList.length,
-              itemBuilder: buildToDo,
+      body: RefreshIndicator(
+        onRefresh: _refreseToDoList,
+        child: Flex(
+          direction: Axis.vertical,
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                itemCount: _todoList.length,
+                itemBuilder: buildToDo,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () =>
