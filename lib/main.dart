@@ -13,6 +13,7 @@ class ToDoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: AppHome(),
       title: 'My ToDo List',
       theme: appTheme(),
@@ -65,7 +66,7 @@ class _HomeState extends State<AppHome> {
 
   Widget buildToDo(BuildContext context, int index) {
     return Dismissible(
-        key: Key(index.toString()),
+        key: Key(DateTime.now().millisecondsSinceEpoch.toString()),
         background: Container(
           color: Colors.red,
           child: Align(
@@ -91,21 +92,19 @@ class _HomeState extends State<AppHome> {
             _jsonFileHandler.saveFile(_todoList);
           },
         ),
-        onDismissed: (direction) {
-          this._removeToDo(index);
-        });
+        onDismissed: (direction) => this._removeToDo(index));
   }
 
   _removeToDo(int index) {
     this.setState(() {
       this._lastRemovedIndex = index;
-      this._lastRemoved = _todoList[_lastRemovedIndex];
-      _todoList.removeAt(_lastRemovedIndex);
-      _jsonFileHandler.saveFile(_todoList);
+      this._lastRemoved = _todoList[index];
+      _todoList.removeAt(index);
     });
+    _jsonFileHandler.saveFile(_todoList);
 
     final SnackBar snackBar = SnackBar(
-      content: Text('ToDo ${_lastRemoved.title} has been removed!'),
+      content: Text('ToDo ${_lastRemoved.title} has been removed!' ?? ''),
       duration: Duration(seconds: 2),
       action: SnackBarAction(
           label: 'Undo',
