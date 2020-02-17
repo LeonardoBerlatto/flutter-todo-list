@@ -8,7 +8,7 @@ Used to learn about path-provider package and some cool widgets like [AlertDialo
 ## :camera: Preview
 ![image](https://i.ibb.co/7Q3Gvhs/ezgif-com-video-to-gif.gif)
 
-## :camera: Features
+## :sparkles: Features
 - Create new ToDos :heavy_check_mark:
 - Save ToDos on disk :heavy_check_mark:
 - Sort them by the ones that are not done first :heavy_check_mark:
